@@ -1,3 +1,5 @@
+<a href="https://gitlab.com/Tecnonucleous/open-telegram-bot-nodejs"><img src="https://img.shields.io/badge/Gitlab-Tecnonucleous%20Bot-orange.svg"></img></a> <a href="https://github.com/Tecnonucleous/Tecnonucleous-Bot"><img src="https://img.shields.io/badge/Github-Tecnonucleous%20Bot-lightgrey.svg"></img></a> 
+
 # 🔑 Requisitos
 
 Debemos hablar con [BotFather](https://t.me/BotFather) para generar el token que utilizaremos para crear nuestro bot y revisar las distintas credenciales que se utilizan en este repo. 
