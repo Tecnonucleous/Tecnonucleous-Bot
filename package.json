@@ -1,7 +1,7 @@
 {
   "name": "botdb",
   "version": "2.2.0",
-  "description": "<a href=\"https://gitlab.com/Tecnonucleous/open-telegram-bot-nodejs\"><img src=\"https://img.shields.io/badge/Gitlab-Tecnonucleous%20Bot-orange.svg\"></img></a> <a href=\"https://github.com/Tecnonucleous/Tecnonucleous-Bot\"><img src=\"https://img.shields.io/badge/Github-Tecnonucleous%20Bot-lightgrey.svg\"></img></a>",
+  "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "@NeganLucille",
@@ -9,13 +9,10 @@
   "dependencies": {
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
-    "imgur": "^0.3.1",
+    "node-imgur": "^0.3.1",
     "node-telegram-bot-api": "^0.30.0",
     "pexels-api-wrapper": "^1.1.1",
     "tesseract.js": "^1.0.14",
     "weather-js": "2.0.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

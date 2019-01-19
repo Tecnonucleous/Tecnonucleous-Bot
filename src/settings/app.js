@@ -16,7 +16,7 @@ db.users.loadDatabase();
 db.chats.loadDatabase();
 
 // Client Imgur
-const imgur = require('imgur');
+const imgur = require('node-imgur');
 imgur.setClientId(config.token_imgur)
 imgur.getClientId();
 
