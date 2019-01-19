@@ -16,6 +16,7 @@ Debemos hablar con [BotFather](https://t.me/BotFather) para generar el token que
 # ⚙️ Configuraciones previas
 Para que funcione nuestro bot, debemos hacer los siguiente:
 > * Ve al directorio `settings`
+> * Encontraras un archivo llamado `config-samples.js` y cambia el nombre por `config.js` (O puedes simplemente hacer una copia y cambiarle el nombre a la copia)
 > * Abre `config.js`, revisa y establece tu token previamente solicitado a [BotFather](https://t.me/BotFather)
 ---
 
