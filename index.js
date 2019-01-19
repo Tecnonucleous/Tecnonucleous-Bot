@@ -11,7 +11,7 @@ const error = require('./src/settings/log_error');
         const pin_unpin = require('./src/commands/groups/pin_unpin');
         const exportInviteLink = require('./src/commands/groups/exportInviteLink');
         const admin = require('./src/commands/groups/admin');
-        const mod_unmod = require('./src/commands/groups/mod_unmod');
+        const mod_unmod = require('./src/commands/groups/mod_unmod');      
 
         // Comandos restrictivos
         const ban_unban = require('./src/commands/restrict/ban_unban');
@@ -21,5 +21,6 @@ const error = require('./src/settings/log_error');
         // Plugins
         const imgur = require('./src/commands/plugins/imgur')
         const weather = require('./src/commands/plugins/weather');
-        const progeso_ano = require('./src/commands/plugins/progreso_ano');
         //const wallpapers = require('./src/commands/plugins/wallpapers')
+        
+        
