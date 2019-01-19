@@ -35,9 +35,15 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo|
 |/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur|
 |/clima (ciudad)| Muestra el tiempo de tu ciudad|
-|/progeso o !progreso muestra el porcertaje del progreso actual del año|
+|/progeso o !progreso |Muestra el porcertaje del progreso actual del año|
 
 
 Estos son los comandos disponibles hasta ahora, no obstante seguimos implementando fragmentos de código.
 
 ---
+
+# Guía: Creación de bots de Telegram en Nodejs
+
+<img src="https://tecnonucleous.com/content/images/2018/03/Guia-creacion-de-bot-de-telegram-en-nodejs.png"></img>
+
+https://tecnonucleous.com/creacion-de-bots-de-telegram-en-nodejs/
