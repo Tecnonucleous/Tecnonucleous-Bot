@@ -21,6 +21,7 @@ const error = require('./src/settings/log_error');
         // Plugins
         const imgur = require('./src/commands/plugins/imgur')
         const weather = require('./src/commands/plugins/weather');
+        const progreso = require('./src/commands/plugins/progreso_ano')
         //const wallpapers = require('./src/commands/plugins/wallpapers')
         
         
