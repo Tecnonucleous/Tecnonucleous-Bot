@@ -1,15 +1,15 @@
 {
   "name": "botdb",
   "version": "2.2.0",
-  "description": "",
+  "description": "Telegram Open Source Bot Nodejs",
   "main": "index.js",
   "keywords": [],
-  "author": "@NeganLucille",
+  "author": "Tecnonucleous",
   "license": "ISC",
   "dependencies": {
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
-    "node-imgur": "^0.3.1",
+    "imgur": "^0.3.1",
     "node-telegram-bot-api": "^0.30.0",
     "pexels-api-wrapper": "^1.1.1",
     "tesseract.js": "^1.0.14",
