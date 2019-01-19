@@ -19,6 +19,11 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 > * Abre `config.js`, revisa y establece tu token previamente solicitado a [BotFather](https://t.me/BotFather)
 ---
 
+### Listado de webs para obtener las distintas API Key que usa actualmente el bot:
+
+- https://api.imgur.com/
+- https://www.pexels.com/api/
+
 # ⚔️ Comandos disponibles
 
 |Comandos |Descripción |
@@ -46,4 +51,4 @@ Estos son los comandos disponibles hasta ahora, no obstante seguimos implementan
 
 <img src="https://tecnonucleous.com/content/images/2018/03/Guia-creacion-de-bot-de-telegram-en-nodejs.png"></img>
 
-https://tecnonucleous.com/creacion-de-bots-de-telegram-en-nodejs/
+➡️ https://tecnonucleous.com/creacion-de-bots-de-telegram-en-nodejs/
