@@ -11,7 +11,7 @@ app.bot.onText(/^\!export|^\/export/, function(msg){
     }
 
     if (prop.chatType == 'supergroup'){
-        app.bot.getChatMember(prop.chat_id, prop.from_idfromId).then(function(infouser){
+        app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(infouser){
             if ((infouser.status == 'creator') || (infouser.status == 'administrator')){
                 app.bot.exportChatInviteLink(prop.chat_id).then(function(link){
                     var url = link
