@@ -42,6 +42,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur|
 |/clima (ciudad)| Muestra el tiempo de tu ciudad|
 |/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|
+|/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|
 |/progeso o !progreso |Muestra el porcertaje del progreso actual del año|
 
 
