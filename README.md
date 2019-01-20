@@ -41,6 +41,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo|
 |/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur|
 |/clima (ciudad)| Muestra el tiempo de tu ciudad|
+|/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|
 |/progeso o !progreso |Muestra el porcertaje del progreso actual del año|
 
 
