@@ -2,7 +2,7 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\!export|^\/export/, function(msg){
+app.bot.onText(/^\!link|^\/link/, function(msg){
 
     const prop = {
         'chat_id': msg.chat.id,
