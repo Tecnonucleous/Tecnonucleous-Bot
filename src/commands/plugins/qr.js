@@ -22,11 +22,11 @@ app.bot.onText(/^\!qr|^\/qr/, function(msg) {
     // En los chats privados (User + Bot) no podemos borrar el mensaje que nos manda el usuario
     // Debido a esto creamos un if haciendo que si el tipo de chat es privado solo mande la respuesta
     if(msg.chat.type == 'private'){
-      app.bot.sendMessage(msg.chat.id, "Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, "⛔️ Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
     }
     else{
       app.bot.deleteMessage(msg.chat.id, msg.message_id);
-    app.bot.sendMessage(msg.chat.id, "Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
+    app.bot.sendMessage(msg.chat.id, "⛔️ Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
    }
   }
 });
