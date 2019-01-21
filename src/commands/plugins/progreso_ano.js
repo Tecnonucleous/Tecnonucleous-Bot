@@ -17,6 +17,11 @@ var resto_progreso_fin_ano = 100 - parseInt(progreso_ano);
 			//console.log(yearBar);
       }
 var barra_progreso = yearBar + " " + progreso_ano + "%";
-
-  app.bot.sendMessage(msg.chat.id, barra_progreso);
+	if(msg.chat.type == 'private'){
+  	app.bot.sendMessage(msg.chat.id, "📆 El progreso actual del año es: \n\n" + barra_progreso);
+	}
+	else{
+		app.bot.deleteMessage(msg.chat.id, msg.message_id);
+		app.bot.sendMessage(msg.chat.id, "📆 El progreso actual del año es: \n\n" + barra_progreso);
+	}
  });
