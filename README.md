@@ -27,24 +27,25 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 
 # ⚔️ Comandos disponibles
 
-|Comandos |Descripción |
-|--------|------------|
-|/start |Comando de inicio del bot|
-|Bienvenida y despedida|Da la bienvenida y se despide de los usuarios|
-|/ban (respuesta + tiempo) |Banea y expulsa al usuario durante un tiempo determinado|
-|/unban o !unban (respuesta) | Desbanea respondiendo al mensaje del usuario
-|/link o !link|Exporta el enlace del grupo|
-|/pin o !pin (respuesta)|Ancla mensajes en supergrupos|
-|/unpin o !unpin|Desancla mensajes en supergrupos|
-|@admin o @admins |Avisa a los administradores del grupo |
-|/mute o !mute (respuesta + tiempo) |Mutea al usuario respondiendo al mensaje del usuario e introduciendo un dígito|
-|/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo|
-|/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur|
-|/clima (ciudad)| Muestra el tiempo de tu ciudad|
-|/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|
-|/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|
-|/progeso o !progreso |Muestra el porcertaje del progreso actual del año|
+|Comandos |Descripción | Ejemplos|
+|--------|------------|----------|
+|/start |Comando de inicio del bot|/start|
+|Bienvenida y despedida|Da la bienvenida y se despide de los usuarios||
+|/ban (respuesta + tiempo) |Banea y expulsa al usuario durante un tiempo determinado respondiendo a un mensaje del usuario en cuestión|/ban 1|
+|/unban o !unban (respuesta) | Desbanea respondiendo al mensaje del usuario||
+|/link o !link|Exporta el enlace del grupo||
+|/pin o !pin (respuesta)|Ancla mensajes en supergrupos||
+|/unpin o !unpin|Desancla mensajes en supergrupos||
+|@admin o `@admins` |Avisa a los administradores del grupo ||
+|/mute o !mute (respuesta + tiempo) |Mutea al usuario respondiendo al mensaje del usuario e introduciendo uno o más dígitos que representan las horas|!mute 5|
+|/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo||
+|/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur||
+|/clima (ciudad)| Muestra el tiempo de tu ciudad|/clima Madrid, España|
+|/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|!webshot https://tecnonucleous.com|
+|/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|!qr TEXTO|
+|/progeso o !progreso |Muestra el porcertaje del progreso actual del año||
 
+🚨 respuesta 🚨 -> Indica que esos comandos requieren que respondas al mensaje/imagen/... del usuario sobre el que quieres aplicar la acción
 
 Estos son los comandos disponibles hasta ahora, no obstante seguimos implementando fragmentos de código.
 
