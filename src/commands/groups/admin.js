@@ -2,11 +2,16 @@
 
 const app = require('../../settings/app');
 
+// Como esta creado este comando solo funciona si el usuario que manda el mensaje
+// No es ni creador ni administrador del grupo
+// Debido a la siguiente condición  "if (infouser.status == 'member')"
+
 app.bot.onText(/^\@admin|^\@admins/, function(msg){
+
     if (msg.reply_to_message == undefined){
         return;
     }
-    
+
     const prop = {
         'chat_id': msg.chat.id,
         'from_id': msg.from.id,
@@ -27,7 +32,7 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
                 });
 
                 app.bot.getChatAdministrators(prop.chat_id).then(function(adminsgroup){
-                    
+
                     const properties = {
                         'id': "",
                         'bot': "",
@@ -39,17 +44,19 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
 
                     for (var i = 0; i < adminsgroup.length; i++){
                         properties.adminsinfo = adminsgroup[i].user
-                        properties.id = adminsgroup[i].user.id 
-                        properties.bot = adminsgroup[i].user.is_bot 
+                        properties.id = adminsgroup[i].user.id
+                        properties.bot = adminsgroup[i].user.is_bot
                         properties.name = adminsgroup[i].user.first_name
-                        properties.alias = adminsgroup[i].user.username 
-                        
+                        properties.alias = adminsgroup[i].user.username
+
                         if (properties.bot == false){
                             app.bot.sendMessage(properties.adminsinfo.id, "🛎 Te avisa: \n👨🏻‍💼 *Nombre:* " + prop.fromName + "\n🆔 *Id:* `" + prop.from_id + "`\n\n❌ *Infractor:*\n🙅🏻‍♂️ *Nombre:* " + prop.replyName + "\n🆔 *Id:* `" + prop.replyId + "`\n📃 *Texto con spam:* \n" + prop.replyText + "\n\n🏛 *En el grupo:* " + prop.title, properties.opts)
                         }
                     }
                 })
+            }else{
+              app.bot.sendMessage(prop.chat_id, "Este comando es de uso exclusivo para los usuarios. Su función es enviar alertas a los administradores del grupo.");
             }
-        })  
-    
+        })
+
 });

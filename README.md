@@ -36,7 +36,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/link o !link|Exporta el enlace del grupo||
 |/pin o !pin (respuesta)|Ancla mensajes en supergrupos||
 |/unpin o !unpin|Desancla mensajes en supergrupos||
-|@admin o `@admins` |Avisa a los administradores del grupo ||
+|@admin o `@admins` |Avisa a los administradores del grupo (Es de uso exclusivo para los usuarios). Para que los administradores puedan recibir las aletas es necesario que inicien el bot privado una única vez con el comando /start||
 |/mute o !mute (respuesta + tiempo) |Mutea al usuario respondiendo al mensaje del usuario e introduciendo uno o más dígitos que representan las horas|!mute 5|
 |/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo||
 |/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur||
