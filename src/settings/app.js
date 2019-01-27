@@ -6,6 +6,10 @@ const config = require('./config')
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(config.token_bot, {polling: true});
 
+// Módulo para nodejs (https://www.npmjs.com/package/request) para realizar llamadas http, es compatible con HTTPS
+// y sigue redirecciones de forma predeterminada
+const request = require('request');
+
 //Base de datos
 const Datastore = require('nedb'), db = new Datastore();
 
@@ -33,4 +37,4 @@ const Pexels = new PexelsAPI(config.token_pexels);
 const Tesseract = require('tesseract.js')
 
 // Modulos exportados
-module.exports = {bot, db, imgur, weather, moment, Pexels, Tesseract}
+module.exports = {bot, request, db, imgur, weather, moment, Pexels, Tesseract}

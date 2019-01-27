@@ -1,4 +1,4 @@
-<a href="https://gitlab.com/Tecnonucleous/open-telegram-bot-nodejs"><img src="https://img.shields.io/badge/Gitlab-Tecnonucleous%20Bot-orange.svg"></img></a> <a href="https://github.com/Tecnonucleous/Tecnonucleous-Bot"><img src="https://img.shields.io/badge/Github-Tecnonucleous%20Bot-lightgrey.svg"></img></a>
+<a href="https://gitlab.com/Tecnonucleous/open-telegram-bot-nodejs"><img src="https://img.shields.io/badge/Gitlab-Tecnonucleous%20Bot-orange.svg"></img></a> <a href="https://github.com/Tecnonucleous/Tecnonucleous-Bot"><img src="https://img.shields.io/badge/Github-Tecnonucleous%20Bot-lightgrey.svg"></img></a><a href="https://www.patreon.com/Tecnonucleous"><img src="https://img.shields.io/badge/Patreon-Donate-blue.svg"></img></a>
 
 # 💿 Instalación de las dependencias de Nodejs
 
@@ -44,6 +44,8 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|!webshot https://tecnonucleous.com|
 |/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|!qr TEXTO|
 |/progeso o !progreso |Muestra el porcertaje del progreso actual del año||
+|/archive o !archive (url)|Muestra la última captura disposible de una web en Archive.org y permite guardar una nueva captura de la misma|!archive https://wikipedia.org|
+
 
 🚨 respuesta 🚨 -> Indica que esos comandos requieren que respondas al mensaje/imagen/... del usuario sobre el que quieres aplicar la acción
 
