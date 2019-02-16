@@ -20,10 +20,9 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 > * Abre `config.js`, revisa y establece tu token previamente solicitado a [BotFather](https://t.me/BotFather)
 ---
 
-### Listado de webs para obtener las distintas API Key que usa actualmente el bot:
+### Listado de web/s para obtener las distintas API Key que usa actualmente el bot:
 
 - https://api.imgur.com/
-- https://www.pexels.com/api/
 
 # ⚔️ Comandos disponibles
 
@@ -44,7 +43,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|!webshot https://tecnonucleous.com|
 |/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|!qr TEXTO|
 |/progeso o !progreso |Muestra el porcertaje del progreso actual del año||
-|/archive o !archive (url)|Muestra la última captura disposible de una web en Archive.org y permite guardar una nueva captura de la misma|!archive https://wikipedia.org|
+|!archive (url)|Muestra la última captura disposible de una web en Archive.org y permite guardar una nueva captura de la misma|!archive https://wikipedia.org|
 
 
 🚨 respuesta 🚨 -> Indica que esos comandos requieren que respondas al mensaje/imagen/... del usuario sobre el que quieres aplicar la acción
@@ -52,6 +51,9 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 Estos son los comandos disponibles hasta ahora, no obstante seguimos implementando fragmentos de código.
 
 ---
+# Contributors:
+
+[@Negan](https://gitlab.com/negan) y [@danielperez9430](https://gitlab.com/danielperez9430)
 
 # Guía: Creación de bots de Telegram en Nodejs
 

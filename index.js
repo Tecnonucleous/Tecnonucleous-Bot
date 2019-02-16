@@ -23,5 +23,5 @@ const error = require('./src/settings/log_error');
         const weather = require('./src/commands/plugins/weather');
         const webshot = require('./src/commands/plugins/webshot');
         const qr = require('./src/commands/plugins/qr');
+        const archiveorg = require('./src/commands/plugins/archiveorg');
         const progeso_ano = require('./src/commands/plugins/progreso_ano');
-        //const wallpapers = require('./src/commands/plugins/wallpapers')

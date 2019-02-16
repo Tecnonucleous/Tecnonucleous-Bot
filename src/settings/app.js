@@ -31,10 +31,5 @@ const weather = require('weather-js');
 const moment = require('moment');
 moment.locale('es');
 
-// API Pexels
-const PexelsAPI = require('pexels-api-wrapper');
-const Pexels = new PexelsAPI(config.token_pexels);
-const Tesseract = require('tesseract.js')
-
 // Modulos exportados
-module.exports = {bot, request, db, imgur, weather, moment, Pexels, Tesseract}
+module.exports = {bot, request, db, imgur, weather, moment}
