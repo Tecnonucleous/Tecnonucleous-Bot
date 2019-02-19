@@ -38,6 +38,8 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |@admin o `@admins` |Avisa a los administradores del grupo (Es de uso exclusivo para los usuarios). Para que los administradores puedan recibir las aletas es necesario que inicien el bot privado una única vez con el comando /start||
 |/mute o !mute (respuesta + tiempo) |Mutea al usuario respondiendo al mensaje del usuario e introduciendo uno o más dígitos que representan las horas|!mute 5|
 |/unmute o !unmute (respuesta)| Desmutea al usuario respondiendo a un mensaje suyo||
+|/getid o !getid | Devuelve el id del usuario que manda el mensaje||
+|/chatid o !chatid (respuesta)| Devuelve el id del chat en el que nos encontremos||
 |/imgur o !imgur (respuesta)| Sube imagenes anónimamente a Imgur||
 |/clima (ciudad)| Muestra el tiempo de tu ciudad|/clima Madrid, España|
 |/webshot o !webshot (url)| Muestra una captura del sitio web que le indicas|!webshot https://tecnonucleous.com|
