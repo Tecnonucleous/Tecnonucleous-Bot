@@ -11,5 +11,5 @@ module.exports = {
      * @type {!string}
      * Token Imgur
      */
-    token_imgur: ''
+    token_imgur: ''  // Optional
 }

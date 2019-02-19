@@ -19,7 +19,9 @@ const error = require('./src/settings/log_error');
         const kick = require('./src/commands/restrict/kick');
 
         // Plugins
-        const imgur = require('./src/commands/plugins/imgur')
+		if(config.token_imgur != ""){
+        const imgur = require('./src/commands/plugins/imgur');
+		}
         const weather = require('./src/commands/plugins/weather');
         const webshot = require('./src/commands/plugins/webshot');
         const qr = require('./src/commands/plugins/qr');
