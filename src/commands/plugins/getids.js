@@ -11,11 +11,11 @@ app.bot.onText(/^\!chatid|^\/chatid/, function(msg){
       };
       // Checking Chat Type -- Comprobación del tipo de Chat
       if (msg.chat.type == 'private') {
-        app.bot.sendMessage(prop.chat_id, "👤 Nombre del chat: " + prop.chat_title + "\n└ChatID: <code>" + prop.chat_id + "</code>", {parse_mode: 'HTML'});
+        app.bot.sendMessage(prop.chat_id, app.i18n.__('👤 Chat name: ') + prop.chat_title + "\n└ChatID: <code>" + prop.chat_id + "</code>", {parse_mode: 'HTML'});
       }
       else {
         app.bot.deleteMessage(msg.chat.id, msg.message_id);
-        app.bot.sendMessage(prop.chat_id, "👤 Nombre del chat: " + prop.chat_title + "\n└ChatID: <code>" + prop.chat_id + "</code>", {parse_mode: 'HTML'});
+        app.bot.sendMessage(prop.chat_id, app.i18n.__('👤 Chat name: ') + prop.chat_title + "\n└ChatID: <code>" + prop.chat_id + "</code>", {parse_mode: 'HTML'});
            }
     });
 
@@ -36,11 +36,11 @@ app.bot.onText(/^\!getid|^\/getid/, function(msg){
     }
     // Checking Chat Type -- Comprobación del tipo de Chat
     if (msg.chat.type == 'private') {
-      app.bot.sendMessage(prop.chat_id, "👤 Nombre de usuario: " + prop.nameFirst + "├\nUserID: <code>" + prop.user_id + "</code>\n└" + "Alias de usuario: " + prop.undefinedUsername, {parse_mode: 'HTML'})
+      app.bot.sendMessage(prop.chat_id, app.i18n.__('👤 Username: ')  + prop.nameFirst + "├\nUserID: <code>" + prop.user_id + "</code>\n└" + app.i18n.__('User alias: ') + prop.undefinedUsername, {parse_mode: 'HTML'})
     }
     else {
       app.bot.deleteMessage(msg.chat.id, msg.message_id);
-      app.bot.sendMessage(prop.chat_id, "👤 Nombre de usuario: " + prop.nameFirst + "\n├UserID: <code>" + prop.user_id + "</code>\n└" + "Alias de usuario: " + prop.undefinedUsername, {parse_mode: 'HTML'})
+      app.bot.sendMessage(prop.chat_id, app.i18n.__('👤 Username: ') + prop.nameFirst + "\n├UserID: <code>" + prop.user_id + "</code>\n└" + app.i18n.__('User alias: ') + prop.undefinedUsername, {parse_mode: 'HTML'})
     }
 
   });

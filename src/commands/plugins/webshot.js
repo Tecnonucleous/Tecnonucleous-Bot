@@ -9,19 +9,19 @@ app.bot.onText(/^\!webshot|^\/webshot/, function(msg) {
   var image = "https://api.letsvalidate.com/v1/thumbs/?url=" + url + "&width=1280&height=720";
     if(url != ""){
       if(msg.chat.type == 'private'){
-      app.bot.sendMessage(msg.chat.id, "[📷](" + image + ") Captura de la web: " + url,{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, "[📷](" + image + ")" + app.i18n.__(' Webpage screenshot: ') + url,{parse_mode : "Markdown"});
       }
       else{
       app.bot.deleteMessage(msg.chat.id, msg.message_id);
-      app.bot.sendMessage(msg.chat.id, "[📷](" + image + ") Captura de la web: " + url,{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, "[📷](" + image + ")" + app.i18n.__(' Webpage screenshot: ') + url,{parse_mode : "Markdown"});
       }
   }
 else{
   if(msg.chat.type == 'private'){
-  app.bot.sendMessage(msg.chat.id, "⛔️ Error, para poder usar el comando !webshot tienes que escribir !webshot + url \n\nEjemplo: !webshot google.es",{parse_mode : "Markdown"});
+  app.bot.sendMessage(msg.chat.id, app.i18n.__('⛔️ Error, for use the command !webshot, you need to write !webshot + url \n\nExample: !webshot google.es'),{parse_mode : "Markdown"});
   }
   else{
-    app.bot.sendMessage(msg.chat.id, "⛔️ Error, para poder usar el comando !webshot tienes que escribir !webshot + url \n\nEjemplo: !webshot google.es",{parse_mode : "Markdown"});
+    app.bot.sendMessage(msg.chat.id, app.i18n.__('⛔️ Error, for use the command !webshot, you need to write !webshot + url \n\nExample: !webshot google.es'),{parse_mode : "Markdown"});
     app.bot.deleteMessage(msg.chat.id, msg.message_id);
   }
   }

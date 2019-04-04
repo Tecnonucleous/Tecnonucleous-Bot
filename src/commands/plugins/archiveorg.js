@@ -2,12 +2,13 @@
 
 const app = require('../../settings/app');
 /**
- * Información para el correcto funcionamiento de este plugin:
- * Recuerda aplicar en el archivo 'app.js'
- * const request = require('request')
+ * Information for the correct functioning of this plugin:
+ * Remember to apply in the 'app.js' file
+ * const request = require ('request')
+ * From here, the code should work correctly.
  *
- * Más abajo, en 'modules.exports', se nombra a request y ya podras utilizarlo en todas partes mediante "app.request"
- * Apartir de aquí, debería funcionarte correctamente el código.
+ * Below, in 'modules.exports', request is named and you can use it everywhere with "app.request"
+ * From there, the code should work correctly.
  */
 
 app.bot.onText(/^\!archive (.+)/, function(msg, match){
@@ -35,13 +36,13 @@ app.bot.onText(/^\!archive (.+)/, function(msg, match){
                     reply_markup: {
                         inline_keyboard: [
                             [
-                                {text: "🗂 Archivar", callback_data: 'archived'}
+                                {text: app.i18n.__('🗂 Archive'), callback_data: 'archived'}
                             ]
                         ]
                     }
                 };
 
-                app.bot.sendMessage(prop.chat_id, "❌Esta URL no está archivada. \n\n*¿Quieres archivarla?*", button_archived)
+                app.bot.sendMessage(prop.chat_id, app.i18n.__('❌This URL is not archived. \n\n*Do you want to archive it?*'), button_archived)
 
                 app.bot.on('callback_query', function onCallbackQuery(archivated){
                     const data = archivated.data
@@ -63,7 +64,7 @@ app.bot.onText(/^\!archive (.+)/, function(msg, match){
                     if (data == 'archived'){
                         app.request(save_url_result, function(error, response, html){
                             if (!error && response.statusCode == 200){
-                                app.bot.editMessageText("✅ URL archivada correctamente\n\nPulse el botón para ver más información", opts)
+                                app.bot.editMessageText(app.i18n.__('✅ Archived URL correctly \n\nPress the button to see more information'), opts)
                             }
                         })
                     } else if (data == 'log_archivated'){
@@ -80,9 +81,9 @@ app.bot.onText(/^\!archive (.+)/, function(msg, match){
                             var fulltime = archive_time.substring(8,10).concat(':'.concat(archive_time.substring(10,12).concat(':'.concat(archive_time.substring(12,14)))));
                             if (prop.type_chat == 'private'){
                                 app.bot.deleteMessage(prop.chat_id, prop.message_id);
-                                app.bot.editMessageText(archive_url + "\n📆 Fecha: " + fulldate + "\n⏱ Hora: " + fulltime, opts_edit);
+                                app.bot.editMessageText(archive_url + app.i18n.__('\n📆 Date: ') + fulldate + app.i18n.__('\n⏱ Time: ') + fulltime, opts_edit);
                             } else {
-                                app.bot.editMessageText(archive_url + "\n📆 Fecha: " + fulldate + "\n⏱ Hora: " + fulltime, opts_edit);
+                                app.bot.editMessageText(archive_url + app.i18n.__('\n📆 Date: ') + fulldate + app.i18n.__('\n⏱ Time: ') + fulltime, opts_edit);
                             }
                         })
                     }
@@ -95,24 +96,15 @@ app.bot.onText(/^\!archive (.+)/, function(msg, match){
                 var fulltime = archive_time.substring(8,10).concat(':'.concat(archive_time.substring(10,12).concat(':'.concat(archive_time.substring(12,14)))));
 
                 if (prop.type_chat == 'private'){
-                    app.bot.sendMessage(prop.chat_id, archive_url + "\n📆 Fecha: " + fulldate + "\n⏱ Hora: " + fulltime);
+                    app.bot.sendMessage(prop.chat_id, archive_url + app.i18n.__('\n📆 Date: ') + fulldate + app.i18n.__('\n⏱ Time: ') + fulltime);
                 } else {
                     app.bot.deleteMessage(prop.chat_id, prop.message_id)
-                    app.bot.sendMessage(prop.chat_id, archive_url + "\n📆 Fecha: " + fulldate + "\n⏱ Hora: " + fulltime);
+                    app.bot.sendMessage(prop.chat_id, archive_url + app.i18n.__('\n📆 Date: ') + fulldate + app.i18n.__('\n⏱ Time: ') + fulltime);
                 }
             }
-
-
-
-
         /*
 
         */
-
-
-
-
-
     })
 
 
