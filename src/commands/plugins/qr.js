@@ -11,22 +11,22 @@ app.bot.onText(/^\!qr|^\/qr/, function(msg) {
   if(data != ""){
   var imageqr = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + data;
     if(msg.chat.type == 'private'){
-      app.bot.sendMessage(msg.chat.id, "[✏️](" + imageqr + ")Qr code de: " + data,{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, "[✏️](" + imageqr + ")" + app.i18n.__('Qr code of: ') + data,{parse_mode : "Markdown"});
         }
     else{
       app.bot.deleteMessage(msg.chat.id, msg.message_id);
-      app.bot.sendMessage(msg.chat.id, "[✏️](" + imageqr + ")Qr code de: " + data,{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, "[✏️](" + imageqr + ")" + app.i18n.__('Qr code of: ') + data,{parse_mode : "Markdown"});
         }
   }
   else {
     // En los chats privados (User + Bot) no podemos borrar el mensaje que nos manda el usuario
     // Debido a esto creamos un if haciendo que si el tipo de chat es privado solo mande la respuesta
     if(msg.chat.type == 'private'){
-      app.bot.sendMessage(msg.chat.id, "⛔️ Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
+      app.bot.sendMessage(msg.chat.id, app.i18n.__('⛔️ Error, for use this command you have to write !qr + Text or /qr \n\nExample: !qr google.es'),{parse_mode : "Markdown"});
     }
     else{
       app.bot.deleteMessage(msg.chat.id, msg.message_id);
-    app.bot.sendMessage(msg.chat.id, "⛔️ Error, para usar este comando tienes que escribir !qr + Texto o /qr \n\nEjemplo: !qr google.es",{parse_mode : "Markdown"});
+    app.bot.sendMessage(msg.chat.id, app.i18n.__('⛔️ Error, for use this command you have to write !qr + Text or /qr \n\nExample: !qr google.es'),{parse_mode : "Markdown"});
    }
   }
 });

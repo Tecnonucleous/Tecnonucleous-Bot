@@ -31,5 +31,16 @@ const weather = require('weather-js');
 const moment = require('moment');
 moment.locale('es');
 
+// Multilang Bot
+
+const i18n = require('i18n');
+
+i18n.configure({
+    locales:['en','es'],
+	  defaultLocale: 'es', // Language settings
+    register: global,
+    directory: __dirname + '/locales'
+});
+
 // Modulos exportados
-module.exports = {bot, request, db, imgur, weather, moment}
+module.exports = {bot, request, db, imgur, weather, moment, i18n}

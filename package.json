@@ -1,6 +1,6 @@
 {
-  "name": "botdb",
-  "version": "2.2.0",
+  "name": "Tecnonucleous_bot",
+  "version": "2.0.0",
   "description": "Telegram Open Source Bot Nodejs",
   "main": "index.js",
   "keywords": [],
@@ -11,6 +11,7 @@
     "nedb": "^1.8.0",
     "imgur": "^0.3.1",
     "node-telegram-bot-api": "^0.30.0",
-    "weather-js": "2.0.0"
+    "weather-js": "2.0.0",
+    "i18n": "0.8.3"
   }
 }

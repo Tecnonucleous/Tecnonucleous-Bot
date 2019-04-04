@@ -19,6 +19,11 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 > * Encontraras un archivo llamado `config-samples.js` y cambia el nombre por `config.js` (O puedes simplemente hacer una copia y cambiarle el nombre a la copia)
 > * Abre `config.js`, revisa y establece tu token previamente solicitado a [BotFather](https://t.me/BotFather)
 ---
+*Cambiar el idioma por defecto del bot:*
+
+> Ir al directorio `settings` donde encontraras un archivo llamado `app.js` y busca la línea que pone `defaultLocale: 'es', // Language settings` y cambia el valor entre comillas simples.
+>
+> Por defecto la tradución es "es" -> Español, puedes cambiarlo por cualquiera de los idiomas actualemente soportados que encontraras definidos en la línea superior llamada `locales`.
 
 ### Listado de web/s para obtener las distintas API Key que usa actualmente el bot:
 
