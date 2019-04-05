@@ -21,14 +21,14 @@ app.bot.onText(/^\!pin|^\/pin/, function(msg){
         if ((data.status == 'creator')|| (data.status == 'administrator')){
             if (prop.chatType == 'supergroup'){
                 app.bot.pinChatMessage(prop.chat_id, prop.replyMsg, opts);
-                app.bot.deleteMessage(prop.chat_id, prop.messageId)
+                app.bot.deleteMessage(prop.chat_id, prop.messageId);
             } else if (prop.chatType == 'private'){
-                app.bot.sendMessage(prop.chat_id, "Comando solo disponible en supergrupos")
+                app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for supergroups'));
             } else if (prop.chatType == 'group'){
-                app.bot.sendMessage(prop.chat_id, "Comando solo disponible en supergrupos")
+                app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for supergroups'));
             }
         } else {
-            app.bot.sendMessage(prop.chat_id, "Comando solo para administradores y creador")
+            app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for admins and creator'));
         }
     })
 });
@@ -46,7 +46,7 @@ app.bot.onText(/^\!unpin|^\/unpin/, function(msg){
             app.bot.deleteMessage(prop.chat_id, prop.messageId);
             app.bot.unpinChatMessage(prop.chat_id)
         } else {
-            bot.sendMessage(prop.chat_id, "Lo siento, no eres administrador")
+            bot.sendMessage(prop.chat_id, app.i18n.__('Sorry, you are not an admin'));
         }
     })
 });

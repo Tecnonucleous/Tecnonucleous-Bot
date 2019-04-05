@@ -15,11 +15,11 @@ app.bot.onText(/^\!link|^\/link/, function(msg){
             if ((infouser.status == 'creator') || (infouser.status == 'administrator')){
                 app.bot.exportChatInviteLink(prop.chat_id).then(function(link){
                     var url = link
-                    app.bot.sendMessage(prop.chat_id, "Enlace del grupo \n" + url)
+                    app.bot.sendMessage(prop.chat_id, app.i18n.__('Group link: \n') + url);
                 });
             } else {
                 app.bot.deleteMessage(prop.chat_id, msg.message_id)
-                app.bot.sendMessage(prop.chat_id, "Comando solo para administradores y creador")
+                app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for admins and creator'));
             }
         })
     }

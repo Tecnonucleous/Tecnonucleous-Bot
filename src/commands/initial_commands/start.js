@@ -12,9 +12,9 @@ var invite_code;
     }
 if (match[1] != undefined){
 invite_code = match[1];
-app.bot.sendMessage(prop.chat_id, "Hola " + prop.userName + " con código de invitación " + invite_code)
+app.bot.sendMessage(prop.chat_id, app.i18n.__('Hello ') + prop.userName + app.i18n.__(' with invitation code ') + invite_code)
 }
 else{
-    app.bot.sendMessage(prop.chat_id, "Hola " + prop.userName)
+    app.bot.sendMessage(prop.chat_id, app.i18n.__('Hello ') + prop.userName)
     }
 });

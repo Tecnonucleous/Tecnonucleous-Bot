@@ -31,8 +31,8 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
     }
     else {
       if (prop.type_chat == 'supergroup' && prop.username_chat == undefined) {
-        var info_chat_id = String(prop.chat_id); // Realizamos la conversion a String
-        var mod_chat_id = info_chat_id.substring(4).trim(); // Eliminamos -100 del chat_id para que funcione el Deep Link
+        var info_chat_id = String(prop.chat_id); // Conversion to String
+        var mod_chat_id = info_chat_id.substring(4).trim(); // Removes -100 of the "chat_id" for create the Deep Link
         var deep_link = String("tg://openmessage?chat_id=" + mod_chat_id + "&message_id=" + prop.replyId_messageId);
       }
       }
@@ -40,7 +40,7 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
         app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(infouser){
             if (infouser.status == 'member'){
                 app.bot.deleteMessage(prop.chat_id, prop.messageId);
-                app.bot.sendMessage(prop.chat_id, "Avisando a los admins").then(function(deletemessage){
+                app.bot.sendMessage(prop.chat_id, app.i18n.__('Notifying administrators')).then(function(deletemessage){
                     setTimeout(function(){
                         app.bot.deleteMessage(prop.chat_id, deletemessage.message_id);
                     },10000)
@@ -65,12 +65,12 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
                         properties.alias = adminsgroup[i].user.username
 
                         if (properties.bot == false){
-                          app.bot.sendMessage(properties.adminsinfo.id, "🛎 Te avisa: \n👨🏻‍💼 <b>Nombre:</b> " + prop.fromName + "\n🆔 <b>Id:</b> <code>" + prop.from_id + "</code>\n\n❌ <b>Infractor:</b>\n🙅🏻‍♂️ <b>Nombre:</b> " + prop.replyName + "\n🆔 <b>Id:</b> <code>" + prop.replyId + "</code>\n📃 <b>Texto con spam:</b> \n" + prop.replyText + "\n\n🏛 <b>En el grupo:</b> " + prop.title + "\n", {parse_mode: 'HTML', reply_markup:{ inline_keyboard: [[{text: "Ir al mensaje", url: deep_link}]]}});
+                          app.bot.sendMessage(properties.adminsinfo.id, app.i18n.__('🛎 Alert: \n👨🏻‍💼 <b>Name:</b> ') + prop.fromName + "\n🆔 <b>Id:</b> <code>" + prop.from_id + app.i18n.__('</code>\n\n❌ <b>Offender:</b>\n🙅🏻‍♂️ <b>Name:</b> ') + prop.replyName + "\n🆔 <b>Id:</b> <code>" + prop.replyId + app.i18n.__('</code>\n📃 <b>Text with spam:</b> \n') + prop.replyText + app.i18n.__('\n\n🏛 <b>In the group:</b> ') + prop.title + "\n", {parse_mode: 'HTML', reply_markup:{ inline_keyboard: [[{text: app.i18n.__('Go to the message'), url: deep_link}]]}});
                         }
                     }
                 })
             }else{
-              app.bot.sendMessage(prop.chat_id, "Este comando es de uso exclusivo para los usuarios. Su función es enviar alertas a los administradores del grupo.");
+              app.bot.sendMessage(prop.chat_id, app.i18n.__('This command is exclusive for users. Its function is to send alerts to the admins.'));
             }
         })
 

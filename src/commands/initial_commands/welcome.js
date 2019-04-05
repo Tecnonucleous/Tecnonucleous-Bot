@@ -2,7 +2,7 @@
 
 const app = require('../../settings/app')
 
-// Bienvenida a nuevos usuarios y despedida de los mismos
+// "Welcome" to new users and "goodbyte"
 
 app.bot.on('message', function(msg){
 
@@ -21,7 +21,7 @@ app.bot.on('message', function(msg){
         }
 
         app.bot.deleteMessage(prop.chat_id, prop.messageId)
-        app.bot.sendMessage(prop.chat_id, "Hola " + newMember.username + ", bienvenido al grupo " + prop.chatTitle)
+        app.bot.sendMessage(prop.chat_id, app.i18n.__('Hello ') + newMember.username + app.i18n.__(', welcome to the group ') + prop.chatTitle)
     }
 
     else if (msg.left_chat_member != undefined){
@@ -33,7 +33,7 @@ app.bot.on('message', function(msg){
         }
 
         app.bot.deleteMessage(prop.chat_id, prop.messageId)
-        app.bot.sendMessage(prop.chat_id, leftMember.leftUsername + " abandonó el grupo")
+        app.bot.sendMessage(prop.chat_id, leftMember.leftUsername + app.i18n.__(' left the group'))
     }
 
 });

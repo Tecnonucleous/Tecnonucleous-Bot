@@ -39,6 +39,7 @@ i18n.configure({
     locales:['en','es'],
 	  defaultLocale: 'es', // Language settings
     register: global,
+    updateFiles: false,
     directory: __dirname + '/locales'
 });
 
