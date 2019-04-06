@@ -34,6 +34,7 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
         var info_chat_id = String(prop.chat_id); // Conversion to String
         var mod_chat_id = info_chat_id.substring(4).trim(); // Removes -100 of the "chat_id" for create the Deep Link
         var deep_link = String("tg://openmessage?chat_id=" + mod_chat_id + "&message_id=" + prop.replyId_messageId);
+        var deep_link_tgx =  String("t.me" + mod_chat_id + "/" + prop.replyId_messageId);
       }
       }
 
@@ -65,7 +66,7 @@ app.bot.onText(/^\@admin|^\@admins/, function(msg){
                         properties.alias = adminsgroup[i].user.username
 
                         if (properties.bot == false){
-                          app.bot.sendMessage(properties.adminsinfo.id, app.i18n.__('🛎 Alert: \n👨🏻‍💼 <b>Name:</b> ') + prop.fromName + "\n🆔 <b>Id:</b> <code>" + prop.from_id + app.i18n.__('</code>\n\n❌ <b>Offender:</b>\n🙅🏻‍♂️ <b>Name:</b> ') + prop.replyName + "\n🆔 <b>Id:</b> <code>" + prop.replyId + app.i18n.__('</code>\n📃 <b>Text with spam:</b> \n') + prop.replyText + app.i18n.__('\n\n🏛 <b>In the group:</b> ') + prop.title + "\n", {parse_mode: 'HTML', reply_markup:{ inline_keyboard: [[{text: app.i18n.__('Go to the message'), url: deep_link}]]}});
+                          app.bot.sendMessage(properties.adminsinfo.id, app.i18n.__('🛎 Alert: \n👨🏻‍💼 <b>Name:</b> ') + prop.fromName + "\n🆔 <b>Id:</b> <code>" + prop.from_id + app.i18n.__('</code>\n\n❌ <b>Offender:</b>\n🙅🏻‍♂️ <b>Name:</b> ') + prop.replyName + "\n🆔 <b>Id:</b> <code>" + prop.replyId + app.i18n.__('</code>\n📃 <b>Text with spam:</b> \n') + prop.replyText + app.i18n.__('\n\n🏛 <b>In the group:</b> ') + prop.title + "\n", {parse_mode: 'HTML', reply_markup:{ inline_keyboard: [[{text: app.i18n.__('Go to the message'), url: deep_link}],[{text: app.i18n.__('Tg X: Go to the message'), url: deep_link}]]}});
                         }
                     }
                 })

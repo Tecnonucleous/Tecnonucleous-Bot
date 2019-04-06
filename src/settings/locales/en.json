@@ -47,5 +47,6 @@
   "</code>\n📃 <b>Text with spam:</b> \n" : "</code>\n📃 <b>Text with spam:</b> \n",
 	"\n\n🏛 <b>In the group:</b> " : "\n\n🏛 <b>In the group:</b> ",
 	"Go to the message" : "Go to the message",
-	"This command is exclusive for users. Its function is to send alerts to the admins." :  "This command is exclusive for users. Its function is to send alerts to the admins."
+	"This command is exclusive for users. Its function is to send alerts to the admins." :  "This command is exclusive for users. Its function is to send alerts to the admins.",
+	"Tg X: Go to the message" : "Tg X: Go to the message"
 }
