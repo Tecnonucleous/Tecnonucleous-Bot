@@ -48,5 +48,6 @@
 	"\n\n🏛 <b>In the group:</b> " : "\n\n🏛 <b>In the group:</b> ",
 	"Go to the message" : "Go to the message",
 	"This command is exclusive for users. Its function is to send alerts to the admins." :  "This command is exclusive for users. Its function is to send alerts to the admins.",
-	"Tg X: Go to the message" : "Tg X: Go to the message"
+	"Tg X: Go to the message" : "Tg X: Go to the message",
+	"To use the !pin command you need to reply to the message you want to anchor" : "To use the !pin command you need to reply to the message you want to anchor"
 }
