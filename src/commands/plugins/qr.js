@@ -6,8 +6,7 @@ app.bot.onText(/^\!qr|^\/qr/, function(msg) {
   console.log(msg);
   var userId = msg.from.id;
   var data = msg.text.substring(3).trim();
-  // Con este if/else controlamos los posibles errores que puede comenter un usuario
-  // al introducir la información que se requiere para usar este comando
+  // Use if/else for control when user only send a command without text
   if(data != ""){
   var imageqr = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" + data;
     if(msg.chat.type == 'private'){
@@ -19,8 +18,7 @@ app.bot.onText(/^\!qr|^\/qr/, function(msg) {
         }
   }
   else {
-    // En los chats privados (User + Bot) no podemos borrar el mensaje que nos manda el usuario
-    // Debido a esto creamos un if haciendo que si el tipo de chat es privado solo mande la respuesta
+    // Update: Bot API 4.2 in private chat (User + Bot) now we can delete user messenges (Max time 24h)
     if(msg.chat.type == 'private'){
       app.bot.sendMessage(msg.chat.id, app.i18n.__('⛔️ Error, for use this command you have to write !qr + Text or /qr \n\nExample: !qr google.es'),{parse_mode : "Markdown"});
     }
