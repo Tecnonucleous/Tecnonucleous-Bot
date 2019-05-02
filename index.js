@@ -28,3 +28,4 @@ const error = require('./src/settings/log_error');
         const qr = require('./src/commands/plugins/qr');
         const archiveorg = require('./src/commands/plugins/archiveorg');
         const progeso_ano = require('./src/commands/plugins/progreso_ano');
+		const poll = require('./src/commands/plugins/poll');
