@@ -49,5 +49,8 @@
 	"Go to the message" : "Go to the message",
 	"This command is exclusive for users. Its function is to send alerts to the admins." :  "This command is exclusive for users. Its function is to send alerts to the admins.",
 	"Tg X: Go to the message" : "Tg X: Go to the message",
-	"To use the !pin command you need to reply to the message you want to anchor" : "To use the !pin command you need to reply to the message you want to anchor"
+	"To use the !pin command you need to reply to the message you want to anchor" : "To use the !pin command you need to reply to the message you want to anchor",
+	"⛔️ Error, the poll has to have a minimum of two options\n Example: /poll Question; Answer 1; Answer 2" : "⛔️ Error, the poll has to have a minimum of two options\n Example: /poll Question; Answer 1; Answer 2",
+	"🚨 Previously closed poll" : "🚨 Previously closed poll",
+	"You need to reply to poll message with the command /endpoll" : "You need to reply to poll message with the command /endpoll"
 }

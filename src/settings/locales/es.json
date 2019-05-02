@@ -49,5 +49,8 @@
 	"Go to the message" : "Ir al mensaje",
 	"This command is exclusive for users. Its function is to send alerts to the admins." :  "Este comando es de uso exclusivo para los usuarios. Su función es enviar alertas a los administradores del grupo.",
 	"Tg X: Go to the message" : "Tg X: Ir al mensaje",
-	"To use the !pin command you need to reply to the message you want to anchor" : "Para usar el comando !pin tienes que responder al mensaje que quieras anclar"
+	"To use the !pin command you need to reply to the message you want to anchor" : "Para usar el comando !pin tienes que responder al mensaje que quieras anclar",
+	"⛔️ Error, the poll has to have a minimum of two options\n Example: /poll Question; Answer 1; Answer 2" : "⛔️ Error, la encuesta tiene que tener un mínimo de dos opciones.\n Ej: /poll Pregunta; Opción 1 ; Opción 2",
+	"🚨 Previously closed poll" : "🚨 Encuesta previamente cerrada",
+	"You need to reply to poll message with the command /endpoll" : "Tienes que responder directamente al mensaje de la encuesta con el comando /endpoll"
 }
