@@ -35,5 +35,4 @@ app.bot.on('message', function(msg){
         app.bot.deleteMessage(prop.chat_id, prop.messageId)
         app.bot.sendMessage(prop.chat_id, leftMember.leftUsername + app.i18n.__(' left the group'))
     }
-
 });
