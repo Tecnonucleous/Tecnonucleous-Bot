@@ -52,5 +52,12 @@
 	"To use the !pin command you need to reply to the message you want to anchor" : "Para usar el comando !pin tienes que responder al mensaje que quieras anclar",
 	"⛔️ Error, the poll has to have a minimum of two options\n Example: /poll Question; Answer 1; Answer 2" : "⛔️ Error, la encuesta tiene que tener un mínimo de dos opciones.\n Ej: /poll Pregunta; Opción 1 ; Opción 2",
 	"🚨 Previously closed poll" : "🚨 Encuesta previamente cerrada",
-	"You need to reply to poll message with the command /endpoll" : "Tienes que responder directamente al mensaje de la encuesta con el comando /endpoll"
+	"You need to reply to poll message with the command /endpoll" : "Tienes que responder directamente al mensaje de la encuesta con el comando /endpoll",
+	"⚒ List of my permissions:\n\nI can edit messages: " : "⚒ Lista de mis permisos:\n\nPuedo editar mensajes: ",
+	"\nI can change the group inforamtion: " : "\nPuedo cambiar la información del grupo: ",
+	"\nI can delete messages: " : "\nPuedo eliminar mensajes: ",
+	"\nI can add users: " : "\nPuedo añadir usuarios: ",
+	"\nI can restrict users: " : "\nPuedo restringir usuarios: ",
+	"\nI can pin messages: " : "\nPuedo anclar mensajes: ",
+	"\nI can add administrators: " : "\nPuedo añadir administradores: "
 }

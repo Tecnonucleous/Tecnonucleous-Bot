@@ -19,6 +19,8 @@ const error = require('./src/settings/log_error');
         const kick = require('./src/commands/restrict/kick');
         // Essentials -- Imprescindibles
         const getids = require('./src/commands/plugins/getids');
+        // Testing
+        const check = require('./src/commands/test/check');
         // Plugins
 		    if(config.token_imgur != ""){
         const imgur = require('./src/commands/plugins/imgur');

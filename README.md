@@ -34,6 +34,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |Comandos |Descripción | Ejemplos|
 |--------|------------|----------|
 |/start |Comando de inicio del bot|/start|
+|/check o !check|Comprueba los permisos que tiene el bot en el grupo|/check|
 |Bienvenida y despedida|Da la bienvenida y se despide de los usuarios||
 |/ban (respuesta + tiempo) |Banea y expulsa al usuario durante un tiempo determinado respondiendo a un mensaje del usuario en cuestión|/ban 1|
 |/unban o !unban (respuesta) | Desbanea respondiendo al mensaje del usuario||
