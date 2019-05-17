@@ -59,5 +59,7 @@
 	"\nI can add users: " : "\nI can add users: ",
 	"\nI can restrict users: " : "\nI can restrict users: ",
 	"\nI can pin messages: " : "\nI can pin messages: ",
-	"\nI can add administrators: " : "\nI can add administrators: "
+	"\nI can add administrators: " : "\nI can add administrators: ",
+	"⛔️ Error, you need to reply a messege for save it" : "⛔️ Error, you need to reply a messege for save it",
+	"⛔️ I can not send you messeges, you should start me first in private" : 	"⛔️ I can not send you messeges, you should start me first in private"
 }

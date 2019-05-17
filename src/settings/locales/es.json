@@ -59,5 +59,7 @@
 	"\nI can add users: " : "\nPuedo añadir usuarios: ",
 	"\nI can restrict users: " : "\nPuedo restringir usuarios: ",
 	"\nI can pin messages: " : "\nPuedo anclar mensajes: ",
-	"\nI can add administrators: " : "\nPuedo añadir administradores: "
+	"\nI can add administrators: " : "\nPuedo añadir administradores: ",
+	"⛔️ Error, you need to reply a messege for save it" : "⛔️ Error, necesitas responder al mensaje para poder guardarlo",
+	"⛔️ I can not send you messeges, you should start me first in private" : "⛔️ Yo no puedo enviarte mensajes, debes hablarme tu primero por privado"
 }
