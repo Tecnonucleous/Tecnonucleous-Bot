@@ -22,10 +22,11 @@ app.bot.onText(/^\/mute (.+)|^\!mute (.+)/, function(msg, match){
         if ((report.status == 'creator') || (report.status == 'administrator')){
         
             var permisosFalse = {};
-            permisosFalse.can_send_messages = false
-            permisosFalse.can_send_media_messages = false
-            permisosFalse.can_send_other_messages = false
-            permisosFalse.can_add_web_page_previews = false
+            permisosFalse.can_send_messages = false;
+            permisosFalse.can_send_media_messages = false;
+            permisosFalse.can_send_other_messages = false;
+            permisosFalse.can_add_web_page_previews = false;
+            permisosFalse.can_send_polls = false;
             const ms = require("ms");
 
             app.bot.restrictChatMember(prop.chat_id, prop.replyFromId, {until_date: Math.round((Date.now() + ms(prop.time || prop.timetwo + " hour"))/1000)}, permisosFalse).then(function(restricted){
