@@ -1,4 +1,4 @@
-image: ubuntu:latest
+image: alpine
 variables:
   WORK_DIR: ${CI_PROJECT_NAME}
   BRANCH: ${CI_COMMIT_REF_NAME}
