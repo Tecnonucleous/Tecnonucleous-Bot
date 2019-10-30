@@ -16,7 +16,8 @@ deploy:
   - apk add --update openssh bash openssl gettext
   - eval $(ssh-agent -s)
   - mkdir -p ~/.ssh
-  - mv "$DEPLOY_KEY" ~/.ssh/id_rsa
+  - echo "$DEPLOY_KEY" > MyKey.pub
+  - mv MyKey.pub ~/.ssh/id_rsa
   - chmod 700  ~/.ssh/id_rsa
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   - ssh-keyscan -H domain.com >> ~/.ssh/known_hosts
