@@ -6,7 +6,7 @@ variables:
 stages:
   - deploy
 
-deply:
+deploy:
 
 # Within before_script what we are doing is creating and adding ssh key, also we are disabling command line to ask for password. 'StrictHostKeyChecking no'
 before_script:
