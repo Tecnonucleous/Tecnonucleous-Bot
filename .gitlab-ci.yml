@@ -14,11 +14,13 @@ deploy:
  stage: deploy
 # Within before_script what we are doing is creating and adding ssh key, also we are disabling command line to ask for password. 'StrictHostKeyChecking no'
  before_script:
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - apk add --update openssh bash openssl gettext
   - eval $(ssh-agent -s)
-  - ssh-add <(echo "$PRIVATE_KEY" | base64 -d)
   - mkdir -p ~/.ssh
-  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - mv "$PRIVATE_KEY" ~/.ssh/id_rsa
+  - chmod 700  ~/.ssh/id_rsa
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - ssh-keyscan -H domain.com >> ~/.ssh/known_hosts
 
  script:
   - ssh -o StrictHostKeyChecking=no "$SSH_USERNAME"@"$SERVER_IP" -p "$SERVER_PORT" "cd ${WORK_DIR}; git init; git clone -b ${BRANCH} ${REPO};"
