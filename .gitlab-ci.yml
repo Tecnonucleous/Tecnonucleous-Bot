@@ -24,7 +24,7 @@ deploy:
     # Add deploy key to ssh directory
   - echo "$DEPLOY_KEY" | tr -d '\r' | ssh-add - > /dev/null
   - chmod 700  ~/.ssh
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
  script:
   - ssh -o StrictHostKeyChecking=no "$SSH_USERNAME"@"$SERVER_IP" -p "$SERVER_PORT" "cd ${WORK_DIR}; git init; git clone -b ${BRANCH} ${REPO};"
