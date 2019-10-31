@@ -9,6 +9,7 @@ variables:
   DEPLOY_KEY : $DEPLOY_KEY
   FILE_CONFIG_BOT : $FILE_CONFIG_BOT
   CP_FILE_CONFIG_BOT : $CP_FILE_CONFIG_BOT
+  BOT_INDEX : $BOT_INDEX
 stages:
   - deploy
 
@@ -29,4 +30,4 @@ deploy:
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
  script:
-  - ssh -o StrictHostKeyChecking=no "$SSH_USERNAME"@"$SERVER_IP" -p "$SERVER_PORT" "cd ${WORK_DIR}; pm2 stop openbot; rm -rf open-telegram-bot-nodejs; git init; git clone -b ${BRANCH} ${REPO}; cp ${FILE_CONFIG_BOT} ${CP_FILE_CONFIG_BOT}; npm install; pm2 restart openbot"
+  - ssh -o StrictHostKeyChecking=no "$SSH_USERNAME"@"$SERVER_IP" -p "$SERVER_PORT" "cd ${WORK_DIR}; pm2 stop openbot; rm -rf open-telegram-bot-nodejs; git init; git clone -b ${BRANCH} ${REPO}; cp ${FILE_CONFIG_BOT} ${CP_FILE_CONFIG_BOT}; cd ${BOT_INDEX}; npm install; pm2 restart openbot"
