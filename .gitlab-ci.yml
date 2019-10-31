@@ -21,8 +21,11 @@ deploy:
     # Create ~/.ssh directory
   - mkdir -p ~/.ssh
     # Add deploy key to ssh directory
-  - mv "$DEPLOY_KEY" > ~/.ssh/id_rsa
-  - chmod 0700  ~/.ssh/id_rsa
+    # Add deploy key to ssh directory
+  - echo "$DEPLOY_KEY" > MyKey
+  - mv MyKey ~/.ssh/id_rsa
+  - chmod 700  ~/.ssh/id_rsa
+  - ssh-add ~/.ssh/id_rsa
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
  script:
