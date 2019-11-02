@@ -52,7 +52,7 @@ Para que funcione nuestro bot, debemos hacer los siguiente:
 |/qr o !qr (texto)| Convierte texto o enlaces en códigos qr|!qr TEXTO|
 |/progeso o !progreso |Muestra el porcertaje del progreso actual del año||
 |!archive (url)|Muestra la última captura disposible de una web en Archive.org y permite guardar una nueva captura de la misma|!archive https://wikipedia.org|
-|/sendpoll o !sendpoll Pregunta; Opción 1 ; Opción 2| Crea encuestas, puedes añadir hasta 10 opciones separadas por punto y coma (;)|!sendpoll ¿Esto es una encuesta?; Si; No|
+|/poll o !poll Pregunta; Opción 1 ; Opción 2| Crea encuestas, puedes añadir hasta 10 opciones separadas por punto y coma (;)|!poll ¿Esto es una encuesta?; Si; No|
 |/endpoll o !endpoll (respeusta)| Cierra una encuesta previamente creada con el bot, solo tienes que responder al mensaje de la encuesta con el comando !endpoll||
 
 🚨 respuesta 🚨 -> Indica que esos comandos requieren que respondas al mensaje/imagen/... del usuario sobre el que quieres aplicar la acción
