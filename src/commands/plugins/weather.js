@@ -2,7 +2,7 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\/clima (.+)/, function(msg, match)
+app.bot.onText(/^\/clima (.+)/, function(msg, match){
 app.bot.removeListener('callback_query')
     const prop = {
         'chat_id': msg.chat.id,
