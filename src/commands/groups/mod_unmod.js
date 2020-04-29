@@ -2,82 +2,78 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\!mod|^\/mod/, function(msg) {
+app.bot.onText(/^\!mod|^\/mod/, (msg) => {
+    if (msg.reply_to_message !== undefined) {
+        var permisos = require('../../settings/perms');
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.type = msg.chat.type;
+        chat.message_id = msg.message_id;
 
-    if (msg.reply_to_message == undefined){
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
+
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator')) {
+                if (chat.type == 'supergroup') {
+                    app.bot.promoteChatMember(chat.id, user.reply.id, permisos.true).then((newAdmin) => {
+                        if (newAdmin == true) {
+                            app.bot.deleteMessage(chat.id, chat.message_id);
+                            app.bot.sendMessage(chat.id, `✅ ${user.reply.name}${app.i18n.__(' , you are now an administrator.')}`)
+                        }
+                    }).catch((err) => {
+                        if (err) {
+                            app.bot.sendMessage(chat.id, `${app.i18n.__('🤖 The bot does not have permissions to add new administrators')}`, {
+                                parse_mode: 'HTML'
+                            })
+                        }
+                    })
+                } else {
+                    app.bot.sendMessage(chat.id, `${app.i18n.__('Command only available for supergroups')}`)
+                }
+            } else {
+                app.bot.sendMessage(chat.id, `${app.i18n.__('⛔️ Only the creator of the group can use this command')}`)
+            }
+        })
+    } else {
         return;
-    };
-
-    const opts = {
-        'chat_id': msg.chat.id,
-        'userReplyName': msg.reply_to_message.from.first_name,
-        'fromId': msg.from.id,
-        'messageId': msg.message_id,
-        'userReplyId': msg.reply_to_message.from.id,
-        'chatType': msg.chat.type
-    };
-
-    const permisos = {};
-
-    permisos.can_change_info = false;
-    permisos.can_delete_messages = true;
-    permisos.can_invite_users = true;
-    permisos.can_restrict_members = true;
-    permisos.can_pin_messages = true;
-    permisos.can_promote_members = false;
-
-
-    app.bot.getChatMember(opts.chat_id, opts.fromId).then(function(data){
-        if ((data.status == 'creator')){
-          if (opts.chatType == 'supergroup'){
-            app.bot.promoteChatMember(opts.chat_id, opts.userReplyId, permisos).then(function(result){
-                app.bot.deleteMessage(opts.chat_id, opts.messageId);
-                app.bot.sendMessage(opts.chat_id, "✅ " + opts.userReplyName + app.i18n.__(' , you are now an administrator.'));
-            });
-          } else{app.bot.sendMessage(opts.chat_id, app.i18n.__('Command only available for supergroups'));}
-        }
-        else {
-            app.bot.sendMessage(opts.chat_id, app.i18n.__('⛔️ Only the creator of the group can use this command'));
-        }
-    })
+    }
 });
 
-app.bot.onText(/^\!unmod|^\/unmod/, function(msg) {
+app.bot.onText(/^\!unmod|^\/unmod/, (msg) => {
+    if (msg.reply_to_message !== undefined) {
+        var permisos = require('../../settings/perms');
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.type = msg.chat.type;
+        chat.message_id = msg.message_id;
 
-    if (msg.reply_to_message == undefined){
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
+
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator')){
+                if (chat.type == 'supergroup'){
+                    app.bot.promoteChatMember(chat.id, user.reply.id, permisos.false).then((degradateUser) => {
+                        if (degradateUser == true){
+                            app.bot.deleteMessage(chat.id, chat.message_id);
+                            app.bot.sendMessage(chat.id, `❌ ${user.reply.name}${app.i18n.__(' , you are not an administrator')}`)
+                        }
+                    })
+                } else {
+                    app.bot.sendMessage(chat.id, `${app.i18n.__('Command only available for supergroups')}`)
+                }
+            } else {
+                app.bot.sendMessage(chat.id, `${app.i18n.__('⛔️ Only the creator of the group can use this command')}`)
+            }
+        })
+    } else {
         return;
-    };
-
-    const opts = {
-        'chat_id': msg.chat.id,
-        'userReplyName': msg.reply_to_message.from.first_name,
-        'fromId': msg.from.id,
-        'messageId': msg.message_id,
-        'userReplyId': msg.reply_to_message.from.id
-    };
-
-    const permisos = {};
-
-    permisos.can_change_info = false;
-    permisos.can_delete_messages = false;
-    permisos.can_invite_users = false;
-    permisos.can_restrict_members = false;
-    permisos.can_pin_messages = false;
-    permisos.can_promote_members = false;
-
-
-    app.bot.getChatMember(opts.chat_id, opts.fromId).then(function(data){
-        if ((data.status == 'creator')){
-
-          if (opts.chatType == 'supergroup'){
-            app.bot.promoteChatMember(opts.chat_id, opts.userReplyId, permisos).then(function(result){
-                app.bot.deleteMessage(opts.chat_id, opts.messageId);
-                app.bot.sendMessage(opts.chat_id, "❌ " + opts.userReplyName + app.i18n.__(' , you are not an administrator'));
-            });
-          } else{app.bot.sendMessage(opts.chat_id, app.i18n.__('Command only available for supergroups'));}  
-        }
-        else {
-            app.bot.sendMessage(opts.chat_id, app.i18n.__('⛔️ Only the creator of the group can use this command'));
-        }
-    })
-});
+    }
+})
