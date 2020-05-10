@@ -5,7 +5,11 @@
   "main": "index.js",
   "keywords": [],
   "author": "Tecnonucleous",
-  "license": "GPU GPLv3",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:Tecnonucleous/open-telegram-bot-nodejs.git"
+  },
   "dependencies": {
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
