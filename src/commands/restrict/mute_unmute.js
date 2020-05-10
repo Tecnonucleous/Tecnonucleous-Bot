@@ -2,132 +2,104 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\/mute (.+)|^\!mute (.+)/, function(msg, match){
+app.bot.onText(/^\/mute (.+)|^\!mute (.+)/, function (msg, match) {
+    if (msg.reply_to_message !== undefined) {
+        var perms = require('../../settings/perms');
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.message_id = msg.message_id;
 
-    if (msg.reply_to_message == undefined){
-        return;
-    }
-    const prop = {
-        'chat_id': msg.chat.id,
-        'from_id': msg.from.id,
-        'time': match[1],
-        'timetwo': match[2],
-        'replyFromId': msg.reply_to_message.from.id,
-        'replyFromName': msg.reply_to_message.from.first_name,
-        'messageId': msg.message_id
-    }
-    
-    app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(report){
-        
-        if ((report.status == 'creator') || (report.status == 'administrator')){
-        
-            var permisosFalse = {};
-            permisosFalse.can_send_messages = false;
-            permisosFalse.can_send_media_messages = false;
-            permisosFalse.can_send_other_messages = false;
-            permisosFalse.can_add_web_page_previews = false;
-            permisosFalse.can_send_polls = false;
-            const ms = require("ms");
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
 
-            app.bot.restrictChatMember(prop.chat_id, prop.replyFromId, {until_date: Math.round((Date.now() + ms(prop.time || prop.timetwo + " hour"))/1000)}, permisosFalse).then(function(restricted){
+        var options = {};
+        options.time1 = match[1];
+        options.time2 = match[2];
 
-                app.bot.getChatMember(prop.chat_id, prop.replyFromId).then(function(infouser){
-                    if ((infouser.status == 'restricted')){
-                        if (prop.time < 2){
-                            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-                            app.bot.sendMessage(prop.chat_id, prop.replyFromName + " ha sido muteado durante " + prop.time + " hora").then(function(deleteMessage){
-                                setTimeout(function(){
-                                    app.bot.deleteMessage(prop.chat_id, deleteMessage.message_id)
-                                }, 120000)
-                            })
-                        }
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')) {
+                var ms = require('ms');
 
-                        if (prop.time > 2){
-                            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-                            app.bot.sendMessage(prop.chat_id, prop.replyFromName + " ha sido muteado durante " + prop.time + " horas").then(function(deleteMessage){
-                                setTimeout(function(){
-                                    app.bot.deleteMessage(prop.chat_id, deleteMessage.message_id)
-                                }, 120000)
-                            })
-                        }
-                            
-                        if (prop.timetwo < 2){
-                            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-                            app.bot.sendMessage(prop.chat_id, prop.replyFromName + " ha sido muteado durante " + prop.timetwo + " hora").then(function(removeMessage){
-                                setTimeout(function(){
-                                    app.bot.deleteMessage(prop.chat_id, removeMessage.message_id)
-                                }, 120000)
-                            })
-                        }
-                             
-                        if (prop.timetwo > 2){
-                            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-                            app.bot.sendMessage(prop.chat_id, prop.replyFromName + " ha sido muteado durante " + prop.timetwo + " horas").then(function(removeMessage){
-                                setTimeout(function(){
-                                    app.bot.deleteMessage(prop.chat_id, removeMessage.message_id)
-                                }, 120000)
-                            })
-                        }
-                    } else {
-                        return;
+                app.bot.restrictChatMember(chat.id, user.reply.id, {
+                    until_date: Math.round((Date.now() + ms(options.time || options.time2 + " hour")) / 1000)
+                }, perms.mute.false).then((restrictMuteUser) => {
+                    if (restrictMuteUser == true) {
+
+                        app.bot.getChatMember(chat.id, user.reply.id).then((infoUserRestricted) => {
+                            if ((infoUserRestricted.status == 'restricted')) {
+                                if (options.time1 < 2 || options.time2 < 2) {
+                                    app.bot.deleteMessage(chat.id, chat.message_id);
+                                    app.bot.sendMessage(chat.id, `${app.i18n.__('The User: ')}${user.reply.name} ${app.i18n.__('is mute during ')}${options.time1 || options.time2} ${app.i18n.__('hour')}`).then((continueMessage) => {
+                                        setTimeout(() => {
+                                            app.bot.deleteMessage(continueMessage.chat.id, continueMessage.message_id)
+                                        }, 120000)
+                                    })
+                                }
+                                else if (options.time1 >= 2 || options.time2 >= 2) {
+                                    app.bot.deleteMessage(chat.id, chat.message_id);
+                                    app.bot.sendMessage(chat.id, `${app.i18n.__('The User: ')}${user.reply.name} ${app.i18n.__('is mute during ')}${options.time1 || options.time2} ${app.i18n.__('hours')}`).then((continueMessage) => {
+                                        setTimeout(() => {
+                                            app.bot.deleteMessage(continueMessage.chat.id, continueMessage.message_id)
+                                        }, 120000)
+                                    })
+                                }
+                            } else {
+                                return;
+                            }
+                        })
                     }
                 })
-            })
-        } else {
-            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-            app.bot.sendMessage(prop.chat_id, "Lo siento, no eres administrador").then(function(removeMessageUser){
-                setTimeout(function(){
-                    app.bot.deleteMessage(prop.chat_id, removeMessageUser.message_id)
-                }, 120000)
-            })
-        };
-    })
-});
-
-app.bot.onText(/^\/unmute|^\!unmute/, function(msg){
-
-if (msg.reply_to_message == undefined){
+            } else {
+                app.bot.deleteMessage(chat.id, chat.message_id);
+                app.bot.sendMessage(chat.id, `${app.i18n.__('⛔️ Only the creator of the group can use this command')}`).then((continueMessageNotAdmin) => {
+                    setTimeout(() => {
+                        app.bot.deleteMessage(continueMessageNotAdmin.chat.id, continueMessageNotAdmin.message_id)
+                    }, 120000)
+                })
+            }
+        })
+    } else {
         return;
     }
+});
 
-    const prop = {
-        'chat_id': msg.chat.id,
-        'from_id': msg.from.id,
-        'replyFromId': msg.reply_to_message.from.id,
-        'replyFromName': msg.reply_to_message.from.first_name,
-        'messageId': msg.message_id
-    }
+app.bot.onText(/^\/unmute|^\!unmute/, function (msg) {
+    if (msg.reply_to_message !== undefined) {
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.message_id = msg.message_id;
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
 
-    app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(report){
-        
-        if ((report.status == 'creator') || (report.status == 'administrator')){
-        
-            var permisosTrue = {};
-            permisosTrue.can_send_messages = true
-            permisosTrue.can_send_media_messages = true
-            permisosTrue.can_send_other_messages = true
-            permisosTrue.can_add_web_page_previews = true
-            const ms = require("ms");
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')) {
+                var perms = require('../../settings/perms');
 
-            app.bot.restrictChatMember(prop.chat_id, prop.replyFromId, permisosTrue).then(function(unrestricted){
-
-                app.bot.getChatMember(prop.chat_id, prop.replyFromId).then(function(infouser){
-                    
-                    if ((infouser.status == 'member')){
-                        app.bot.sendMessage(prop.chat_id, prop.replyFromName + " ha sido desmuteado")
-                    } else {
-                        return;
+                app.bot.restrictChatMember(chat.id, user.reply.id, perms.mute.true).then((unrestrictedUser) => {
+                    if (unrestrictedUser == true) {
+                        app.bot.getChatMember(chat.id, user.reply.id).then((infoUserNew) => {
+                            if ((infoUserNew.status == 'member')) {
+                                app.bot.sendMessage(chat.id, `${app.i18n.__('The User: ')}${user.reply.name} ${app.i18n.__("It's demutualized")}`)
+                            } else {
+                                return;
+                            }
+                        })
                     }
                 })
-            })
-        } else {
-            app.bot.deleteMessage(prop.chat_id, prop.messageId)
-            app.bot.sendMessage(prop.chat_id, "Lo siento, no eres administrador").then(function(removeMessageUser){
-                setTimeout(function(){
-                    app.bot.deleteMessage(prop.chat_id, removeMessageUser.message_id)
-                }, 120000)
-            })
-        };
-    })
+            } else {
+                app.bot.deleteMessage(chat.id, chat.message_id);
+                app.bot.sendMessage(chat.id, `${app.i18n.__('⛔️ Only the creator of the group can use this command')}`).then((removeMessageUser) => {
+                    setTimeout(() => {
+                        app.bot.deleteMessage(removeMessageUser.chat.id, removeMessageUser.message_id)
+                    }, 120000)
+                })
+            }
+        })
+    }
 });
-    

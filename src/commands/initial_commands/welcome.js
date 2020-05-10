@@ -2,37 +2,37 @@
 
 const app = require('../../settings/app')
 
-// "Welcome" to new users and "goodbyte"
+// "Welcome" to new users and "goodbye"
 
 app.bot.on('message', function(msg){
-
-    const prop = {
-        'chat_id': msg.chat.id,
-        'chatTitle': msg.chat.title,
-        'messageId': msg.message_id
-    }
+    var chat = {};
+    chat.id = msg.chat.id;
+    chat.title = msg.chat.title;
+    chat.messageId = msg.message_id;
 
     if (msg.new_chat_members != undefined){
 
-        const newMember = {
-            'userId': msg.new_chat_member.id,
-            'username': msg.new_chat_member.first_name,
-            'userAlias': msg.new_chat_member.username
+        var newMember = {};
+        newMember.id = msg.new_chat_member.id;
+        newMember.name = msg.new_chat_member.first_name;
+        if (msg.new_chat_member.username !== undefined){
+            newMember.alias = msg.new_chat_member.username;
         }
 
-        app.bot.deleteMessage(prop.chat_id, prop.messageId)
-        app.bot.sendMessage(prop.chat_id, app.i18n.__('Hello ') + newMember.username + app.i18n.__(', welcome to the group ') + prop.chatTitle)
+        app.bot.deleteMessage(chat.id, chat.messageId)
+        app.bot.sendMessage(chat.id, `${app.i18n.__('Hello ')}${newMember.name}${app.i18n.__(', welcome to the group ')}${chat.title}`)
     }
 
     else if (msg.left_chat_member != undefined){
 
-        const leftMember = {
-            'leftUserId': msg.left_chat_member.id,
-            'leftUsername': msg.left_chat_member.first_name,
-            'leftuserAlias': msg.left_chat_member.username
+        var leftMember = {};
+        leftMember.id = msg.left_chat_member.id;
+        leftMember.name = msg.left_chat_member.first_name;
+        if (msg.left_chat_member.username !== undefined){
+            leftMember.alias = msg.left_chat_member.username;
         }
 
-        app.bot.deleteMessage(prop.chat_id, prop.messageId)
-        app.bot.sendMessage(prop.chat_id, leftMember.leftUsername + app.i18n.__(' left the group'))
+        app.bot.deleteMessage(chat.id, chat.messageId)
+        app.bot.sendMessage(chat.id, `${leftMember.name}${app.i18n.__(' left the group')}`)
     }
 });

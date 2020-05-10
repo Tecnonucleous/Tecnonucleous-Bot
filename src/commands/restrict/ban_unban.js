@@ -2,31 +2,84 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\/ban (.+)/, function(msg, match){
-    
-    if (msg.reply_to_message == undefined){
-        return;
+app.bot.onText(/^\/ban (.+)|^\!ban (.+)/, function (msg, match) {
+    if (msg.reply_to_message !== undefined) {
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.message_id = msg.message_id;
+
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
+
+        var options = {};
+        options.timeBan1 = match[1];
+        options.timeBan2 = match[2];
+
+        const ms = require('ms');
+
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')) {
+                app.bot.kickChatMember(chat.id, user.reply.id, {
+                    until_date: Math.round((Date.now() + ms(options.timeBan1 || options.timeBan2 + " days")) / 1000)
+                }).then((resultBanned) => {
+                    console.log(resultBanned)
+                    if (resultBanned == true) {
+
+                        app.bot.sendMessage(chat.id, `❌ ${user.reply.name} ha sido baneado durante ${options.timeBan1 || options.timeBan2} días`, {
+                            reply_markup: {
+                                inline_keyboard: [
+                                    [{ text: `Desbanear`, callback_data: `desbanned:${user.reply.id}:${user.id}:${chat.id}:${user.reply.name}` }]
+                                ]
+                            }
+                        }).then(() => {
+                            app.bot.on('callback_query', (desbannedAction) => {
+                                var tool = {};
+                                tool.chat = desbannedAction.message.chat;
+                                tool.message = desbannedAction.message;
+                                tool.userPulsed = desbannedAction.from;
+                                tool.data = desbannedAction.data.split(":");
+
+                                if (tool.data[0] == 'desbanned') {
+                                    console.log(desbannedAction)
+                                    /**
+                                     * Solo creador y administradores pueden desbanear
+                                     */
+                                    app.bot.getChatMember(tool.chat.id, tool.userPulsed.id).then((infoUser) => {
+                                        if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')) {
+                                            app.bot.deleteMessage(chat.id, chat.message_id);
+                                            app.bot.unbanChatMember(chat.id, tool.data[1]).then((unbannedUser) => {
+                                                if (unbannedUser == true) {
+                                                    app.bot.editMessageText(`${app.i18n.__('The User: ')}${tool.data[4]} ha sido desbaneado`, {
+                                                        chat_id: tool.chat.id,
+                                                        message_id: tool.message.message_id
+                                                    }).then((deleteEditMessage) => {
+                                                        setTimeout(() => {
+                                                            app.bot.deleteMessage(deleteEditMessage.chat.id, deleteEditMessage.message_id)
+                                                        }, 120000)
+                                                    })
+                                                }
+                                            })
+                                        } else {
+                                            app.bot.sendMessage(tool.chat.id, `${app.i18n.__('Command only available for admins and creator')}`).then((removeMessageUser) => {
+                                                setTimeout(() => {
+                                                    app.bot.deleteMessage(removeMessageUser.chat.id, removeMessageUser.message_id)
+                                                },120000)
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        })
+                    }
+                })
+            }
+        })
     }
 
-    const ms = require('ms')
-    const prop = {
-        'chat_id': msg.chat.id,
-        'messageId': msg.message_id,
-        'timeban': match[1],
-        'fromId': msg.from.id,
-        'replyUserId': msg.reply_to_message.from.id,
-        'replyUserName': msg.reply_to_message.from.first_name,
-    };
-    const desban = {
-        reply_markup: {
-            inline_keyboard: [
-                [
-                    {text: "Desbanear", callback_data: 'desban:' + prop.replyUserId + ":" + prop.fromId + ":" + prop.chat_id + ":" + prop.replyUserName}
-                ]
-            ]
-        }
-    };
-
+    /*
     app.bot.getChatMember(prop.chat_id, prop.fromId).then(function(info){
         if ((info.status == 'creator')|| (info.status == 'administrator')){
             app.bot.kickChatMember(prop.chat_id, prop.replyUserId, {until_date: Math.round((Date.now() + ms(prop.timeban + " days"))/1000)}).then(function(result){
@@ -74,32 +127,36 @@ app.bot.onText(/^\/ban (.+)/, function(msg, match){
             app.bot.sendMessage(prop.chat_id, "🔔 Comando solo para administradores y creador")
         }
     })
+    */
 });
 
-app.bot.onText(/^\!unban|^\/unban/, function(msg){
-    if (msg.reply_to_message == undefined){
+app.bot.onText(/^\!unban|^\/unban/, function (msg) {
+    if (msg.reply_to_message !== undefined){
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.message_id = msg.message_id;
+
+        var user = {};
+        user.id = msg.from.id;
+        user.name = msg.from.first_name;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
+
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')){
+                app.bot.unbanChatMember(chat.id, user.reply.id).then((unbanUser) => {
+                    if (unbanUser == true){
+                        app.bot.deleteMessage(chat.id, chat.message_id);
+                        app.bot.sendMessage(chat.id, `${user.reply.name} ya no está baneado`)
+                    }else {
+                        app.bot.deleteMessage(chat.id, chat.message_id);
+                        app.bot.sendMessage(chat.id, `${app.i18n.__('Sorry, you are not an admin')}`)
+                    }
+                })
+            }
+        })
+    } else {
         return;
     }
-
-    const opts = {
-        'replyUserName': msg.reply_to_message.from.first_name,
-        'userId': msg.reply_to_message.from.id,
-        'messageId': msg.message_id,
-        'chatId': msg.chat.id,
-        'myId': msg.from.id,
-        'myName': msg.from.first_name
-    }
-
-    app.bot.getChatMember(opts.chatId, opts.myId).then(function(data){
-        if ((data.status == 'creator') || (data.status == 'administrator')){
-            app.bot.unbanChatMember(opts.chatId, opts.userId).then(function(result){
-                app.bot.deleteMessage(opts.chatId, opts.messageId);
-                app.bot.sendMessage(opts.chatId, opts.replyUserName + " ya no está baneado.");
-            })
-        }
-        else {
-            app.bot.deleteMessage(opts.chatId, opts.messageIdmessageId);
-            app.bot.sendMessage(opts.chatId, "Lo siento " + opts.myName + " no eres administrador");
-        }
-    });
 });

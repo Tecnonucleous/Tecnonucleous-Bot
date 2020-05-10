@@ -1,56 +1,55 @@
 'use strict';
-
 const app = require('../../settings/app')
 
-app.bot.onText(/^\!pin|^\/pin/, function(msg){
-    if (msg.reply_to_message == undefined){
-		app.bot.sendMessage(msg.chat.id, app.i18n.__('To use the !pin command you need to reply to the message you want to anchor'));
-        return;
-    };
+app.bot.onText(/^\!pin|^\/pin/, (msg) => {
+    if (msg.reply_to_message !== undefined){
+        var chat = {};
+        chat.id = msg.chat.id;
+        chat.type = msg.chat.type;
+        chat.messageId = msg.message_id;
+        chat.reply = {};
+        chat.reply.messageId = msg.reply_to_message.message_id;
 
-    const prop = {
-        'chat_id': msg.chat.id,
-        'from_id': msg.from.id,
-        'messageId': msg.message_id,
-        'chatType': msg.chat.type,
-        'replyMsg': msg.reply_to_message.message_id
-    };
-    const opts = {};
-    opts.disable_notification = false;
+        var user = {};
+        user.id = msg.from.id;
 
-    app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(data){
-        if ((data.status == 'creator')|| (data.status == 'administrator')){
-            if ((prop.chatType == 'supergroup')||(prop.chatType == 'group')){
-                app.bot.pinChatMessage(prop.chat_id, prop.replyMsg, opts);
-                app.bot.deleteMessage(prop.chat_id, prop.messageId);
-            } else if (prop.chatType == 'private'){
-                app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for supergroups'));
+        var options = {};
+        options.disable_notification = false;
+
+        app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+            if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')){
+                if ((chat.type == 'supergroup') || (chat.type == 'group')){
+                    app.bot.pinChatMessage(chat.id, chat.reply.messageId, options);
+                    app.bot.deleteMessage(chat.id, chat.messageId)
+                } else if (chat.type == 'private'){
+                    app.bot.sendMessage(chat.id, `${app.i18n.__('Command only available for supergroups')}`)
+                }
+            } else {
+                app.bot.sendMessage(chat.id, `${app.i18n.__('Command only available for admins and creator')}`)
+            }
+        })
+    }
+})
+
+app.bot.onText(/^\!unpin|^\/unpin/, (msg) => {
+    var chat = {};
+    var user = {};
+
+    chat.id = msg.chat.id;
+    chat.messageId = msg.message_id;
+    chat.type = msg.chat.type;
+    user.id = msg.from.id;
+
+    app.bot.getChatMember(chat.id, user.id).then((infoUser) => {
+        if ((infoUser.status == 'creator') || (infoUser.status == 'administrator')){
+            if ((chat.type == 'supergroup') || (chat.type == 'group')){
+                app.bot.unpinChatMessage(chat.id);
+                app.bot.deleteMessage(chat.id, chat.messageId);
+            } else {
+                app.bot.sendMessage(chat.id, `${app.i18n.__('Command only available for supergroups')}`)
             }
         } else {
-            app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for admins and creator'));
+            app.bot.sendMessage(chat.id, `${app.i18n.__('Sorry, you are not an admin')}`)
         }
     })
-});
-
-app.bot.onText(/^\!unpin|^\/unpin/, function(msg){
-
-    const prop = {
-        'chat_id': msg.chat.id,
-        'from_id': msg.from.id,
-        'messageId': msg.message_id,
-		'chatType': msg.chat.type
-    }
-
-    app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(data){
-        if ((data.status == 'creator') || (data.status == 'administator')){
-			if ((prop.chatType == 'supergroup')||(prop.chatType == 'group')){
-            app.bot.deleteMessage(prop.chat_id, prop.messageId);
-            app.bot.unpinChatMessage(prop.chat_id)
-			} else {
-				app.bot.sendMessage(prop.chat_id, app.i18n.__('Command only available for supergroups'));
-			}
-        } else {
-            bot.sendMessage(prop.chat_id, app.i18n.__('Sorry, you are not an admin'));
-        }
-    })
-});
+})

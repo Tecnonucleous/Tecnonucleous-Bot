@@ -2,27 +2,34 @@
 
 const app = require('../../settings/app');
 
-app.bot.onText(/^\/kick/, function(msg){
-    if (msg.reply_to_message == undefined){
-        return;
-    }
+app.bot.onText(/^\/kick|^\!kick/, function(msg){
+    if (msg.reply_to_message !== undefined){
+        var chat = {};
+        chat.id = msg.chat.id;
+        var user = {};
+        user.id = msg.from.id;
+        user.reply = {};
+        user.reply.id = msg.reply_to_message.from.id;
+        user.reply.name = msg.reply_to_message.from.first_name;
 
-    const prop = {
-        'chat_id': msg.chat.id,
-        'from_id': msg.from.id,
-        'replyFromId': msg.reply_to_message.from.id,
-        'replyfromName': msg.reply_to_message.from.first_name
-    }
-
-    app.bot.getChatMember(prop.chat_id, prop.from_id).then(function(resolve){
+        app.bot.getChatMember(chat.id, user.id).then(function(resolve){
         if ((resolve.status == 'creator') || (resolve.status == 'administrator')){
-            app.bot.kickChatMember(prop.chat_id, prop.replyFromId).then(function(kicked){
-                app.bot.sendMessage(prop.chat_id, prop.replyfromName + " ha sido kickeado")
-                app.bot.unbanChatMember(prop.chat_id, prop.replyFromId).then(function(deskicked){
-                })
+            app.bot.kickChatMember(chat.id, user.reply.id).then(function(kicked){
+                console.log(kicked)
+                if (kicked == true){
+                    app.bot.sendMessage(chat.id, `${user.reply.name}${app.i18n.__(' has been kicked')}${app.i18n.__('can rejoin the group')}`).then((removeKickedMessage) => {
+                        setTimeout(() => {
+                            app.bot.deleteMessage(removeKickedMessage.chat.id, removeKickedMessage.message_id)
+                        }, 120000);
+                    })
+                    app.bot.unbanChatMember(chat.id, user.reply.id);
+                }
             })
         } else {
             return;
         }
     })
+    }
+
+    
 })
