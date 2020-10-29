@@ -71,5 +71,9 @@
 	"hour": "hora",
 	"It's demutualized": "está desmuteado",
 	" has been kicked": " ha sido kickeado",
-	"can rejoin the group" : " (puede volver unirse al grupo)"
+	"can rejoin the group" : " (puede volver unirse al grupo)",
+	"selectLang": "Selecciona el lenguaje del bot",
+	"change_lang_button":"🌐 Cambiar idioma",
+	"change_lang_text": "👉 Aquí puedes cambiar el idioma",
+	"predet_lang": "<i>Está bien, estableceré el idioma <b>Español</b> como predeterminado</i>"
 }

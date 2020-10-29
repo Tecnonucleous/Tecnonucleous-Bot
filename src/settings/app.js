@@ -11,13 +11,14 @@ const bot = new TelegramBot(config.token_bot, { polling: true });
 const rp = require('request-promise')
 
 //Base de datos
-const Datastore = require('nedb'), db = new Datastore();
+const Datastore = require('nedb');
 
-db.users = new Datastore('./src/database/users.db');
-db.chats = new Datastore('./src/database/chats.db');
+var Database = {};
+Database.users = new Datastore('./src/database/users.db');
+Database.chats = new Datastore('./src/database/chats.db');
 
-db.users.loadDatabase();
-db.chats.loadDatabase();
+Database.users.loadDatabase();
+Database.chats.loadDatabase();
 
 // Client Imgur
 const imgur = require('imgur');
@@ -32,7 +33,6 @@ const moment = require('moment');
 moment.locale('es');
 
 // Multilang Bot
-
 const i18n = require('i18n');
 
 i18n.configure({
@@ -44,4 +44,4 @@ i18n.configure({
 });
 
 // Modulos exportados
-module.exports = { bot, rp, db, imgur, weather, moment, i18n }
+module.exports = { bot, rp, Database, imgur, weather, moment, i18n }
