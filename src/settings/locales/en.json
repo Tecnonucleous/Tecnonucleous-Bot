@@ -71,5 +71,9 @@
 	"hour": "hour",
 	"It's demutualized": "It's demutualized",
 	" has been kicked": " has been kicked",
-	"can rejoin the group": " (can rejoin the group)"
+	"can rejoin the group": " (can rejoin the group)",
+	"selectLang": "Select the language of the bot",
+	"change_lang_button": "🌐 Change Language",
+	"change_lang_text": "👉 Here you can change language",
+	"predet_lang": "<i>Okay, I'll set the <b>English</b> language as the default</i>"
 }
